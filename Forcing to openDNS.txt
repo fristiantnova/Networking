@@ -1,0 +1,8 @@
+DHCP Client
+Uncheck User Peer DNS
+/ip dns
+set allow-remote-requests=yes servers=208.67.222.222,208.67.220.220
+/ip firewall nat
+add action=dst-nat chain=dstnat comment=OpenDNS dst-port=53,5353 protocol=tcp to-addresses=208.67.222.222 to-ports=443
+add action=dst-nat chain=dstnat comment=OpenDNS dst-port=53,5353 protocol=udp to-addresses=208.67.222.222 to-ports=443
+Letakkan rule diatas Masqurade
