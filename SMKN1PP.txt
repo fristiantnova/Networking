@@ -1,0 +1,976 @@
+# jan/02/2023 08:48:14 by RouterOS 6.49.7
+# software id = ELNC-EAPB
+#
+# model = CCR1009-7G-1C-1S+
+# serial number = 914F099C7038
+/interface ovpn-client
+add comment=sg-10.hostddns.us:9874<->8291 connect-to=sg-10.hostddns.us \
+    mac-address=FE:97:B7:C0:45:76 name=routerku@mytunnel.id password=\
+    cubefreak user=routerku@mytunnel.id
+
+/interface bridge
+add name=Bridge-Gateway
+
+/interface vlan
+add interface=sfp-sfpplus1 name=vlan10 vlan-id=10
+add interface=sfp-sfpplus1 name=vlan20 vlan-id=20
+add interface=sfp-sfpplus1 name=vlan30 vlan-id=30
+add interface=sfp-sfpplus1 name=vlan40 vlan-id=40
+add interface=sfp-sfpplus1 name=vlan50 vlan-id=50
+add interface=sfp-sfpplus1 name=vlan60 vlan-id=60
+add interface=sfp-sfpplus1 name=vlan99 vlan-id=99
+
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+
+/ip firewall layer7-protocol
+add name=SpeedtestL7 regexp="^.+(speedtest).*\\\$"
+
+/ip hotspot profile
+add dns-name=smkn1pp.hotspot hotspot-address=192.168.1.1 login-by=http-chap \
+    name=hsprof1
+add dns-name=smkn1pp.hotspot hotspot-address=192.168.2.1 login-by=http-chap \
+    name=hsprof2
+add dns-name=smkn1pp.hotspot hotspot-address=192.168.3.1 login-by=http-chap \
+    name=hsprof3
+add dns-name=smkn1pp.hotspot hotspot-address=192.168.4.1 login-by=http-chap \
+    name=hsprof4
+
+/ip hotspot user profile
+set [ find default=yes ] shared-users=10
+add incoming-packet-mark=guru keepalive-timeout=30m name=Guru \
+    outgoing-packet-mark=guru shared-users=50 transparent-proxy=yes
+add incoming-packet-mark=tu name=TU outgoing-packet-mark=tu shared-users=8 \
+    transparent-proxy=yes
+add incoming-packet-mark=kesiswaan name=Kesiswaan outgoing-packet-mark=\
+    kesiswaan shared-users=4 transparent-proxy=yes
+add incoming-packet-mark=bk name=BK outgoing-packet-mark=bk shared-users=6 \
+    transparent-proxy=yes
+add incoming-packet-mark=sarana name=Sarana outgoing-packet-mark=sarana \
+    shared-users=4
+add incoming-packet-mark=atp name=ATP outgoing-packet-mark=atp shared-users=\
+    15 transparent-proxy=yes
+add incoming-packet-mark=kurikulum name=Kurikulum outgoing-packet-mark=\
+    kurikulum shared-users=10 transparent-proxy=yes
+add incoming-packet-mark=aphp name=APHP outgoing-packet-mark=aphp \
+    shared-users=10 transparent-proxy=yes
+add incoming-packet-mark=atph name=ATPH outgoing-packet-mark=atph \
+    shared-users=15 transparent-proxy=yes
+add incoming-packet-mark=pustaka name=Pustaka outgoing-packet-mark=pustaka \
+    shared-users=10 transparent-proxy=yes
+add incoming-packet-mark=osis keepalive-timeout=1d name=OSIS \
+    outgoing-packet-mark=osis shared-users=8 transparent-proxy=yes
+add idle-timeout=2m incoming-packet-mark=ujicoba name=UJICOBA \
+    outgoing-packet-mark=ujicoba shared-users=4 transparent-proxy=yes
+add incoming-packet-mark=lsp name=LSP outgoing-packet-mark=lsp shared-users=4 \
+    transparent-proxy=yes
+add idle-timeout=10m incoming-packet-mark=tkj keepalive-timeout=1m name=TKJ \
+    outgoing-packet-mark=tkj shared-users=30 transparent-proxy=yes
+add incoming-packet-mark=uks name=UKS outgoing-packet-mark=uks shared-users=4 \
+    transparent-proxy=yes
+add incoming-packet-mark=humas name=Humas outgoing-packet-mark=humas \
+    shared-users=5 transparent-proxy=yes
+add idle-timeout=5m incoming-packet-mark=gurusmk keepalive-timeout=1m \
+    mac-cookie-timeout=1d name=GuruSMK outgoing-packet-mark=gurusmk \
+    shared-users=8 transparent-proxy=yes
+add incoming-packet-mark=security name=Security outgoing-packet-mark=security \
+    shared-users=4 transparent-proxy=yes
+add incoming-packet-mark=tkjx name=TKJX outgoing-packet-mark=tkjx \
+    shared-users=35 transparent-proxy=yes
+add incoming-packet-mark=utbk name=UTBK outgoing-packet-mark=utbk \
+    shared-users=90 transparent-proxy=yes
+add incoming-packet-mark=amp name=AMP outgoing-packet-mark=amp shared-users=8 \
+    transparent-proxy=yes
+add incoming-packet-mark=ppdb name=PPDB outgoing-packet-mark=ppdb \
+    shared-users=15 transparent-proxy=yes
+add name=Perikanan shared-users=10
+add incoming-packet-mark=bkk name=BKK outgoing-packet-mark=bkk shared-users=\
+    10
+add name="Media Center" shared-users=10
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402122309790002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046210670001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042204720001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044304670002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044902770001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045412630001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1403136103970003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045607650001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044808710001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040409660001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041604680002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044109740001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402024707840002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046812850003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1471095812860041 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1471085009740001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044512780004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045605760002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402011303740003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045508780002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044204850007 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045106770001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045209790003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044807670002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046012640002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044410800001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045401640001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402111903800002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045403920002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044706660002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040211880001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1276035511870002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042905650003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402112412850001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402124312810002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046907830002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402114104730001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041606660003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402135211820002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046506910003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044801940003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402095408950001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402115403810002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402047006810001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402024811780002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044702660002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046205630001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044105870003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044101820005 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044303870006 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402015704840001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046804930001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040909670002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402047112890002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041107750001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046609960001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044711650001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045911800002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402047011810002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044810780005 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402122704890003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044104960002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402096406760001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402124604820001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046207700005 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044406850002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402120207810001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=3328155002790007 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402096908880001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042905880001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040204820003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1302130107870003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402024712650003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042504870001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044306770001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402094512680007 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402022007730002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045008750001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402026603820003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402025507880005 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042507810004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042509730001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402025901790001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402024303830004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042511980002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402111204630001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040704890002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040101670003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1471080404720001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044504810001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402015409760002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402096803790001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044808730004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402116712930001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044401890004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045409830001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044102820003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402047003800002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402047107960003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041008660002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040509680001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045004960002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040905940001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042609970001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042006020002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040610660001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042606870001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041204720003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045909680001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402096507900001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402021212710001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402044212660001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041410860002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402022510960002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041807790001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046208750001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041908710001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040708690002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046408920001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045207650001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041207670003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045510000001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041203890005 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402047007980004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041202830002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042510940002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041701650001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402046510880004 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040505650003 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042107670002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040909670001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402042610880001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402041308770001 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402040505950009 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+add incoming-packet-mark=guru keepalive-timeout=30m name=1402045506690002 \
+    outgoing-packet-mark=guru shared-users=2 transparent-proxy=yes
+
+/ip pool
+add name=hs-pool-depan ranges=192.168.1.21-192.168.1.254
+add name=hs-pool-kurikulum ranges=192.168.2.21-192.168.2.254
+add name=hs-pool-sarana ranges=192.168.3.21-192.168.3.254
+add name=hs-pool-aula ranges=192.168.4.21-192.168.4.254
+add name=dhcp_pool4 ranges=192.168.10.2-192.168.10.200
+add name=dhcp_pool5 ranges=192.168.20.2-192.168.20.200
+add name=dhcp_pool6 ranges=70.1.1.2-70.1.1.200
+add name=dhcp_pool7 ranges=80.0.0.2-80.0.0.10
+add name=dhcp_pool8 ranges=172.16.1.2-172.16.1.254
+
+/ip dhcp-server
+add address-pool=hs-pool-depan disabled=no interface=vlan10 lease-time=1h \
+    name=dhcp1-depan
+add address-pool=hs-pool-kurikulum disabled=no interface=vlan20 lease-time=1h \
+    name=dhcp2-kurikulum
+add address-pool=hs-pool-sarana disabled=no interface=vlan30 lease-time=1h \
+    name=dhcp3-sarana
+add address-pool=hs-pool-aula disabled=no interface=vlan40 lease-time=1h \
+    name=dhcp4-aula
+add address-pool=dhcp_pool4 disabled=no interface=vlan50 name=\
+    dhcp5-mediacenter
+add address-pool=dhcp_pool5 disabled=no interface=vlan60 name=dhcp6-client
+add address-pool=dhcp_pool6 disabled=no interface=Bridge-Gateway name=\
+    dhcp7-bridge
+add address-pool=dhcp_pool7 disabled=no interface=combo1 name=dhcp8-dns
+add address-pool=dhcp_pool8 disabled=no interface=ether7 name=dhcp1
+
+/ip hotspot
+add address-pool=hs-pool-depan addresses-per-mac=1 disabled=no interface=\
+    vlan10 name="1. hs-kantordepan" profile=hsprof1
+add address-pool=hs-pool-kurikulum addresses-per-mac=1 disabled=no interface=\
+    vlan20 name="2. hs-kurikulum" profile=hsprof2
+add address-pool=hs-pool-sarana addresses-per-mac=1 disabled=no interface=\
+    vlan30 name="3. hs-sarana" profile=hsprof3
+add address-pool=hs-pool-aula addresses-per-mac=1 disabled=no interface=\
+    vlan40 name="4. hs-aula" profile=hsprof4
+
+/ip hotspot user profile
+add address-pool=hs-pool-depan name=Tamu shared-users=100 transparent-proxy=\
+    yes
+
+/queue simple
+add max-limit=20M/50M name="Bypass Speedtest" packet-marks=Packet_Speedtest \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+
+/queue type
+add kind=pcq name=PCQ-Download pcq-classifier=dst-address
+add kind=pcq name=PCQ-Upload pcq-classifier=src-address
+
+/queue simple
+add max-limit=1M/1M name=AMP packet-marks=amp queue=PCQ-Upload/PCQ-Download \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=50M/90M name=UTBK packet-marks=utbk queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=10M/100M name=Guru packet-marks=guru queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=1M/2M name="Guru SMK" packet-marks=gurusmk queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/20M name="Tata Usaha" packet-marks=tu queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/20M name=Kurikulum packet-marks=kurikulum queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=2M/5M name=Kesiswaan packet-marks=kesiswaan queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/20M name=Pustaka packet-marks=pustaka queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/20M name=Sarana packet-marks=sarana queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/20M name=OSIS packet-marks=osis queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=6M/30M name=APHP packet-marks=aphp queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=6M/30M name=ATP packet-marks=atp queue=PCQ-Upload/PCQ-Download \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=6M/30M name=ATPH packet-marks=atph queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/20M name=BK packet-marks=bk queue=PCQ-Upload/PCQ-Download \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=5M/30M name=TKJ packet-marks=tkj queue=PCQ-Upload/PCQ-Download \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=2M/30M name=XTKJ packet-marks=tkjx queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=8M/20M name=LSP packet-marks=lsp queue=PCQ-Upload/PCQ-Download \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=2M/10M name=UKS packet-marks=uks queue=PCQ-Upload/PCQ-Download \
+    target=192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=2M/10M name=Humas packet-marks=humas queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=2M/10M name=Security packet-marks=security queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+add max-limit=4M/4M name=Ujicoba packet-marks=ujicoba queue=\
+    PCQ-Upload/PCQ-Download target=\
+    192.168.1.0/24,192.168.2.0/24,192.168.3.0/24,192.168.4.0/24
+
+/interface bridge port
+add bridge=Bridge-Gateway interface=ether2
+add bridge=Bridge-Gateway interface=ether3
+add bridge=Bridge-Gateway interface=ether4
+add bridge=Bridge-Gateway interface=ether5
+add bridge=Bridge-Gateway interface=ether6
+
+/ip address
+add address=192.168.1.1/24 interface=vlan10 network=192.168.1.0
+add address=192.168.99.1/24 interface=vlan99 network=192.168.99.0
+add address=192.168.2.1/24 interface=vlan20 network=192.168.2.0
+add address=192.168.3.1/24 interface=vlan30 network=192.168.3.0
+add address=192.168.4.1/24 interface=vlan40 network=192.168.4.0
+add address=192.168.10.1/24 interface=vlan50 network=192.168.10.0
+add address=192.168.20.1/24 interface=vlan60 network=192.168.20.0
+add address=60.1.1.2/30 interface=ether1 network=60.1.1.0
+add address=70.1.1.1/24 interface=Bridge-Gateway network=70.1.1.0
+add address=80.0.0.1/24 interface=combo1 network=80.0.0.0
+add address=172.16.1.1/24 comment="Gateway Server" interface=ether7 network=\
+    172.16.1.0
+
+/ip dhcp-server network
+add address=70.1.1.0/24 gateway=70.1.1.1
+add address=80.0.0.0/24 gateway=80.0.0.1
+add address=172.16.1.0/24 gateway=172.16.1.1
+add address=192.168.1.0/24 comment="hotspot network" gateway=192.168.1.1
+add address=192.168.2.0/24 comment="hotspot network" gateway=192.168.2.1
+add address=192.168.3.0/24 comment="hotspot network" gateway=192.168.3.1
+add address=192.168.4.0/24 comment="hotspot network" gateway=192.168.4.1
+add address=192.168.10.0/24 gateway=192.168.10.1
+add address=192.168.20.0/24 gateway=192.168.20.1
+
+/ip dns
+set allow-remote-requests=yes servers=1.1.1.1,8.8.8.8
+
+/ip firewall address-list
+add address=0.0.0.0/8 list=private-lokal
+add address=10.0.0.0/8 list=private-lokal
+add address=100.64.0.0/10 list=private-lokal
+add address=127.0.0.0/8 list=private-lokal
+add address=169.254.0.0/16 list=private-lokal
+add address=172.16.0.0/12 list=private-lokal
+add address=192.0.0.0/24 list=private-lokal
+add address=192.0.2.0/24 list=private-lokal
+add address=192.168.0.0/16 list=private-lokal
+add address=198.18.0.0/15 list=private-lokal
+add address=198.51.100.0/24 list=private-lokal
+add address=203.0.113.0/24 list=private-lokal
+add address=224.0.0.0/3 list=private-lokal
+
+/ip firewall filter
+add action=passthrough chain=unused-hs-chain comment=\
+    "place hotspot rules here" disabled=yes
+
+/ip firewall mangle
+add action=mark-connection chain=prerouting comment="Bypass Speedtest" \
+    layer7-protocol=SpeedtestL7 new-connection-mark=conn_speedtest \
+    passthrough=yes
+add action=mark-packet chain=prerouting connection-mark=conn_speedtest \
+    new-packet-mark=Packet_Speedtest passthrough=no
+add action=jump chain=forward comment="Jump Hotspot" jump-target=hotspot
+
+/ip firewall nat
+add action=passthrough chain=unused-hs-chain comment=\
+    "place hotspot rules here" disabled=yes
+add action=masquerade chain=srcnat comment="NAT Client" out-interface=ether1
+add action=masquerade chain=srcnat comment="masquerade hotspot network" \
+    src-address=192.168.1.0/24
+add action=masquerade chain=srcnat comment="masquerade hotspot network" \
+    src-address=192.168.2.0/24
+add action=masquerade chain=srcnat comment="masquerade hotspot network" \
+    src-address=192.168.3.0/24
+add action=masquerade chain=srcnat comment="masquerade hotspot network" \
+    src-address=192.168.4.0/24
+
+/ip firewall raw
+add action=drop chain=prerouting comment="Drop Koneksi ke modem 1" \
+    dst-address=192.168.101.1 dst-port=80 protocol=tcp
+add action=drop chain=prerouting comment="Drop Koneksi ke modem 2" \
+    dst-address=176.16.201.1 dst-port=80 protocol=tcp
+add action=drop chain=prerouting comment="Drop Ping Ke Modem 1" dst-address=\
+    192.168.101.1 protocol=icmp
+add action=drop chain=prerouting comment="Drop Ping Ke Modem 2" dst-address=\
+    176.16.201.1 protocol=icmp
+
+/ip hotspot ip-binding
+add address=192.168.1.200 comment=Erarpor mac-address=B4:2E:99:89:AB:3E \
+    to-address=192.168.1.200 type=bypassed
+add comment=MediaCenter mac-address=50:3E:AA:09:3F:49 type=bypassed
+add mac-address=B4:2E:99:4B:2D:0B type=bypassed
+add comment="iPhone 8 Plus" mac-address=80:B0:3D:53:20:7B type=bypassed
+add mac-address=5E:84:6B:F1:20:BE type=bypassed
+add mac-address=FE:48:5F:51:E1:A2 type=bypassed
+add comment="PC Editing" mac-address=F4:B5:20:13:A8:0A type=bypassed
+add comment="Laptop ACER" mac-address=54:AB:3A:C2:96:DB type=bypassed
+add mac-address=E4:8D:8C:C4:0E:17 type=bypassed
+add mac-address=94:53:30:15:D9:73 type=bypassed
+add comment="Pak Jon" mac-address=96:0A:DD:B3:E7:E4 type=bypassed
+add mac-address=84:EF:18:D5:92:10 type=bypassed
+add mac-address=28:02:D8:94:A4:06 type=bypassed
+add comment="Media Center" mac-address=00:D8:61:DB:37:B0 type=bypassed
+add comment=Meiza mac-address=CC:2D:83:AB:3E:99 type=bypassed
+add comment="Router KK" mac-address=48:8F:5A:78:0C:EB type=bypassed
+add mac-address=48:8F:5A:78:0C:EC type=bypassed
+add comment="Komputer ATP" mac-address=00:30:18:A5:5A:EA type=bypassed
+add comment="Pak Ichsan" mac-address=30:CB:F8:E5:5B:A3 type=bypassed
+add comment="Pak Asdi" mac-address=DC:F0:90:9F:D8:72 type=bypassed
+add mac-address=78:45:61:C8:76:77 type=bypassed
+add comment=Sarana mac-address=F6:A4:20:1F:1C:52 type=bypassed
+add mac-address=48:5F:99:08:94:39 type=bypassed
+add comment=ABIK mac-address=74:2F:68:F8:15:81 type=bypassed
+add comment="SPAM 2" mac-address=B8:86:87:57:96:F5 type=blocked
+add comment="Komputer KaTU" mac-address=B0:68:E6:56:05:A9 type=bypassed
+add comment="Bu Muryani" mac-address=B0:68:E6:56:4C:C1 type=bypassed
+add comment=Meiza mac-address=2E:76:24:68:5B:8F type=bypassed
+add mac-address=7C:67:A2:06:E6:09 type=bypassed
+add mac-address=62:5A:E7:01:BF:01 type=bypassed
+add address=192.168.10.4 type=bypassed
+add mac-address=50:8E:49:63:CC:9C type=bypassed
+add mac-address=9A:2C:BC:F1:C1:9D type=bypassed
+add mac-address=98:2C:BC:F1:C1:9C type=bypassed
+add mac-address=9C:30:5B:6A:A6:A5 type=bypassed
+add mac-address=C2:95:84:76:40:D6 type=bypassed
+add mac-address=B6:AA:4D:4F:03:3B type=bypassed
+add mac-address=B8:86:87:57:8B:BD type=bypassed
+add comment=KTU mac-address=F8:B4:6A:A9:D2:44 type=bypassed
+add mac-address=F2:6F:14:A9:7F:3C type=bypassed
+add mac-address=64:66:B3:0A:32:7D type=bypassed
+add mac-address=C4:AD:34:B7:AB:48 type=bypassed
+add mac-address=C4:AD:34:B7:AB:49 type=bypassed
+add mac-address=48:8F:5A:C7:02:3E type=bypassed
+add comment=ABSENSI mac-address=00:17:61:10:D3:42 to-address=192.168.1.206 \
+    type=bypassed
+add address=192.168.1.251 comment=Elen mac-address=B0:68:E6:56:BC:D3 \
+    to-address=192.168.1.251 type=bypassed
+add mac-address=7C:2A:DB:AA:EA:CF type=bypassed
+add comment="Ketua Sekte" mac-address=EE:4C:97:AF:A9:5A
+add comment="Permaisuri Sekte" mac-address=0C:98:38:B5:B3:F7
+add comment="Permaisuri Sekte 2" mac-address=92:74:87:CB:30:D1
+add comment="Kacung Sekte" mac-address=8A:8A:E7:41:08:AC
+add comment="Anggota Sekte 2" mac-address=2C:D0:66:0E:06:48
+add comment="Anggota Sekte 3" mac-address=04:B1:67:A0:FB:95
+add comment="Anggota Sekte 5" mac-address=DC:B7:2E:D5:34:18
+add comment="Anggota Sekte 6" mac-address=E6:53:4B:86:B1:57
+add comment="Anggota Sekte 7" mac-address=16:7C:C7:58:4B:4B to-address=\
+    192.168.1.193
+add mac-address=04:B1:67:20:F1:7E type=bypassed
+add comment=Kepsek mac-address=D0:53:49:87:5C:5B type=bypassed
+add comment="Wifi Router Atas" mac-address=48:8F:5A:78:0C:F0 type=bypassed
+add mac-address=90:E8:68:82:45:97 type=bypassed
+add mac-address=48:8F:5A:78:0C:ED type=bypassed
+add address=192.168.1.115 mac-address=94:90:34:CD:AF:71 to-address=\
+    192.168.1.115 type=bypassed
+add address=192.168.1.26 comment="CRS Access Point" mac-address=\
+    E4:8D:8C:C4:0E:17 to-address=192.168.1.26 type=bypassed
+add mac-address=48:8F:5A:C7:02:34 type=bypassed
+add comment="UNIFY Tata Usaha" mac-address=44:D9:E7:C6:6F:A2 type=bypassed
+add comment="UNIFY Majelis Guru" mac-address=44:D9:E7:C6:B5:0A type=bypassed
+add mac-address=98:22:EF:4E:82:3B type=bypassed
+add mac-address=4E:38:47:4E:71:68 type=bypassed
+add address=192.168.1.13 comment="AP Kurikulum" mac-address=CC:2D:21:F2:7B:80 \
+    to-address=192.168.1.13 type=bypassed
+add comment="Kak Indah" mac-address=7E:90:B4:9F:4D:75 type=bypassed
+add comment="Switch CRS" mac-address=B8:69:F4:09:F2:93 type=bypassed
+add address=192.168.10.101 comment="Proxy Server" mac-address=\
+    B8:AE:ED:FF:F2:7C to-address=192.168.10.101 type=bypassed
+add mac-address=62:CD:C7:A6:30:CA type=bypassed
+add comment="Tata Usaha" mac-address=B8:69:F4:FA:BD:98 type=bypassed
+add comment="VM Kali" mac-address=08:00:27:B0:68:70 type=bypassed
+add comment=CCTV mac-address=C0:39:5A:9D:DD:C0 server="1. hs-kantordepan" \
+    type=bypassed
+add comment="VM Win" mac-address=08:00:27:26:B5:A8 type=bypassed
+add comment="VM Metasploitable" mac-address=08:00:27:65:AA:F5 type=bypassed
+add mac-address=08:00:27:D5:6E:61 type=bypassed
+add mac-address=02:D2:88:F5:FF:11 type=bypassed
+add mac-address=CA:B3:02:B0:E0:1F type=bypassed
+/ip hotspot user
+add name=admin password=cubefreak
+add disabled=yes name=guru password=bukanuntuksiswa profile=Guru
+add name=tu password=majubersama22 profile=TU
+add name=konseling password=terserahlah profile=BK
+add name=sarana password=bukanmain profile=Sarana
+add name=atp password=smkbisa2022 profile=ATP
+add name=kurikulum password=kurikpunya profile=Kurikulum
+add name=aphp password=bolugulung profile=APHP
+add name=pustaka password=smkbisa2022 profile=Pustaka
+add name=atph password=jagungmanis profile=ATPH
+add name=osis password=dedaunangugur profile=OSIS
+add name=ujicoba password=cubefreak profile=UJICOBA
+add disabled=yes name=gurusmk password=smkbisa profile=GuruSMK
+add name=lsp password=asesor profile=LSP
+add name=tkj password=tkj48 profile=TKJ
+add name=uks password=kesehatan profile=UKS
+add name=humas password=masyarakat profile=Humas
+add name=security password=keamanan profile=Security
+add name=11tkj password=kelas11 profile=TKJX
+add name=kesiswaan password=khususkesiswaan profile=Kesiswaan
+add disabled=yes name=utbk password=utbk2022 profile=UTBK
+add name=amp password=mekanisasi22 profile=AMP
+add name=apat password=perikanan profile=Perikanan
+add name=bkk password=bursakerja22 profile=BKK
+add name=mc password=1234 profile="Media Center"
+add name=tamu password=tamu profile=Guru
+add comment="Abik Selamet" name=1402122309790002 password=230979 profile=\
+    1402122309790002
+add comment="Ade Irma" name=1402046210670001 password=221067 profile=\
+    1402046210670001
+add comment=Afrizal name=1402042204720001 password=220472 profile=\
+    1402042204720001
+add comment="Andi Arifah Hiryanti. T" name=1402044304670002 password=030467 \
+    profile=1402044304670002
+add comment="Anif Riza" name=1402044902770001 password=090277 profile=\
+    1402044902770001
+add comment=Armiza name=1402045412630001 password=141263 profile=\
+    1402045412630001
+add comment="Arta Maulina" name=1403136103970003 password=210397 profile=\
+    1403136103970003
+add comment=Asna name=1402045607650001 password=160765 profile=\
+    1402045607650001
+add comment=Asni name=1402044808710001 password=080871 profile=\
+    1402044808710001
+add comment=Ayonneri name=1402040409660001 password=040966 profile=\
+    1402040409660001
+add comment="Basri Kamar" name=1402041604680002 password=160468 profile=\
+    1402041604680002
+add comment="Catur Rahayu" name=1402044109740001 password=010974 profile=\
+    1402044109740001
+add comment="Darmita Rachman" name=1402024707840002 password=070784 profile=\
+    1402024707840002
+add comment="Desi Arisandi" name=1402046812850003 password=281285 profile=\
+    1402046812850003
+add comment="Dessy Liana" name=1471095812860041 password=181286 profile=\
+    1471095812860041
+add comment="Desy Anriati" name=1471085009740001 password=100974 profile=\
+    1471085009740001
+add comment="Dewi Lolasari" name=1402044512780004 password=051278 profile=\
+    1402044512780004
+add comment="Dwifajar Wulandini" name=1402045605760002 password=160576 \
+    profile=1402045605760002
+add comment="Edi. N" name=1402011303740003 password=130374 profile=\
+    1402011303740003
+add comment="Eka Agustina" name=1402045508780002 password=150878 profile=\
+    1402045508780002
+add comment="Elsi Virenta" name=1402044204850007 password=020485 profile=\
+    1402044204850007
+add comment=Elvidawati name=1402045106770001 password=110677 profile=\
+    1402045106770001
+add comment=Emiwati name=1402045209790003 password=120979 profile=\
+    1402045209790003
+add comment="Eni Zalfiah" name=1402044807670002 password=080767 profile=\
+    1402044807670002
+add comment=Erni name=1402046012640002 password=201264 profile=\
+    1402046012640002
+add comment=Eryati name=1402044410800001 password=041080 profile=\
+    1402044410800001
+add comment="Esther Yunilia" name=1402045401640001 password=140164 profile=\
+    1402045401640001
+add comment="Faizal Kurniawan" name=1402111903800002 password=190380 profile=\
+    1402111903800002
+add comment="Fitri Mariya Amin" name=1402045403920002 password=140392 \
+    profile=1402045403920002
+add comment=Fitriani name=1402044706660002 password=070666 profile=\
+    1402044706660002
+add comment="Fristiant Nova Anggara" name=1402040211880001 password=021188 \
+    profile=1402040211880001
+add comment=Herawati name=1276035511870002 password=151187 profile=\
+    1276035511870002
+add comment="Heru Joedo Prasetyo" name=1402042905650003 password=290565 \
+    profile=1402042905650003
+add comment="Iman Doni Lesmana" name=1402112412850001 password=241285 \
+    profile=1402112412850001
+add comment="Imas Siti Kulsum Sapariah" name=1402124312810002 password=031281 \
+    profile=1402124312810002
+add comment="Indah Sakti Yuli" name=1402046907830002 password=290783 profile=\
+    1402046907830002
+add comment="Indra Sutiowati" name=1402114104730001 password=010473 profile=\
+    1402114104730001
+add comment="Jonhardiman Saih" name=1402041606660003 password=160666 profile=\
+    1402041606660003
+add comment=Kurnia name=1402135211820002 password=121182 profile=\
+    1402135211820002
+add comment="Lisana Nurhasma" name=1402046506910003 password=250691 profile=\
+    1402046506910003
+add comment="Lutfi Fadillah" name=1402044801940003 password=080194 profile=\
+    1402044801940003
+add comment="Lydia Mia Edina" name=1402095408950001 password=140895 profile=\
+    1402095408950001
+add comment=Marlina name=1402115403810002 password=140381 profile=\
+    1402115403810002
+add comment=Marsini name=1402047006810001 password=300681 profile=\
+    1402047006810001
+add comment=Marsintanida name=1402024811780002 password=081178 profile=\
+    1402024811780002
+add comment="Masrita Saragih" name=1402044702660002 password=070266 profile=\
+    1402044702660002
+add comment=Masyeni name=1402046205630001 password=220563 profile=\
+    1402046205630001
+add comment="Meiza Andriani" name=1402044105870003 password=010587 profile=\
+    1402044105870003
+add comment="Merta Yunikka" name=1402044101820005 password=010182 profile=\
+    1402044101820005
+add comment="Merti Anggraini" name=1402044303870006 password=030387 profile=\
+    1402044303870006
+add comment="Mira Suryaningsih" name=1402015704840001 password=170484 \
+    profile=1402015704840001
+add comment="Mita Saputri" name=1402046804930001 password=280493 profile=\
+    1402046804930001
+add comment="Muhammad Ikhsan" name=1402040909670002 password=090967 profile=\
+    1402040909670002
+add comment=Mulya name=1402047112890002 password=311289 profile=\
+    1402047112890002
+add comment="Nanang Yurisno" name=1402041107750001 password=110775 profile=\
+    1402041107750001
+add comment="NELLA SEPTARIANI" name=1402046609960001 password=260996 profile=\
+    1402046609960001
+add comment="Nilam Rihatin" name=1402044711650001 password=071165 profile=\
+    1402044711650001
+add comment=Nofianti name=1402045911800002 password=191180 profile=\
+    1402045911800002
+add comment=Noviarni name=1402047011810002 password=301181 profile=\
+    1402047011810002
+add comment="Nur Asmaneti" name=1402044810780005 password=081078 profile=\
+    1402044810780005
+add comment="Ramdhan Nur Abdi" name=1402122704890003 password=270489 profile=\
+    1402122704890003
+add comment="REFNITA WIDIANINGRUM" name=1402044104960002 password=010496 \
+    profile=1402044104960002
+add comment="Restu Emilia" name=1402096406760001 password=240676 profile=\
+    1402096406760001
+add comment="RIA AFRIANI FR" name=1402124604820001 password=060482 profile=\
+    1402124604820001
+add comment="Riana Sari" name=1402046207700005 password=220770 profile=\
+    1402046207700005
+add comment="Rina Maliza" name=1402044406850002 password=040685 profile=\
+    1402044406850002
+add comment=Riswanto name=1402120207810001 password=020781 profile=\
+    1402120207810001
+add comment="RITA DWI INDRAWATI" name=3328155002790007 password=100279 \
+    profile=3328155002790007
+add comment="Rizka Faradilla" name=1402096908880001 password=290888 profile=\
+    1402096908880001
+add comment="Robi Tridani" name=1402042905880001 password=290588 profile=\
+    1402042905880001
+add comment="Roni Ismanto" name=1402040204820003 password=020482 profile=\
+    1402040204820003
+add comment="Ropi  Maliondra" name=1302130107870003 password=010787 profile=\
+    1302130107870003
+add comment=Rosmawarni name=1402024712650003 password=071265 profile=\
+    1402024712650003
+add comment="Rosseno Wiharjo" name=1402042504870001 password=250487 profile=\
+    1402042504870001
+add comment="Rovina  Pamiaryani" name=1402044306770001 password=030677 \
+    profile=1402044306770001
+add comment="Siti Nadira" name=1402094512680007 password=051268 profile=\
+    1402094512680007
+add comment="Soumus Sukri" name=1402022007730002 password=200773 profile=\
+    1402022007730002
+add comment="Sri Agustianti" name=1402045008750001 password=100875 profile=\
+    1402045008750001
+add comment="Sri Arliyanti Simamora" name=1402026603820003 password=260382 \
+    profile=1402026603820003
+add comment="Sri Atika Dwiyanti" name=1402025507880005 password=150788 \
+    profile=1402025507880005
+add comment=Sudarmadi name=1402042507810004 password=250781 profile=\
+    1402042507810004
+add comment=Supadiyono name=1402042509730001 password=250973 profile=\
+    1402042509730001
+add comment=Susanti name=1402025901790001 password=190179 profile=\
+    1402025901790001
+add comment=Sutami name=1402024303830004 password=030383 profile=\
+    1402024303830004
+add comment="SYAFRIAN ARIF BASRI" name=1402042511980002 password=251198 \
+    profile=1402042511980002
+add comment=Syafrizal name=1402111204630001 password=120463 profile=\
+    1402111204630001
+add comment=Syahliaramad name=1402040704890002 password=070489 profile=\
+    1402040704890002
+add comment=Syahrial name=1402040101670003 password=010167 profile=\
+    1402040101670003
+add comment=Tarjuman name=1471080404720001 password=040472 profile=\
+    1471080404720001
+add comment="Titik Arlinda" name=1402044504810001 password=040581 profile=\
+    1402044504810001
+add comment="Tiur Mas Delima" name=1402015409760002 password=140976 profile=\
+    1402015409760002
+add comment="Vivit Helenawati" name=1402096803790001 password=280379 profile=\
+    1402096803790001
+add comment="Wahyuning Ambar Lestari" name=1402044808730004 password=080873 \
+    profile=1402044808730004
+add comment="Widya Setuti" name=1402116712930001 password=271293 profile=\
+    1402116712930001
+add comment="Yane Anggela Caturiza" name=1402044401890004 password=040189 \
+    profile=1402044401890004
+add comment="Yeni Maliza" name=1402045409830001 password=140983 profile=\
+    1402045409830001
+add comment="Yeni Midel Pebrulita" name=1402044102820003 password=010282 \
+    profile=1402044102820003
+add comment=Yeniarti name=1402047003800002 password=300380 profile=\
+    1402047003800002
+add comment="YULI ANGGRAINI" name=1402047107960003 password=310796 profile=\
+    1402047107960003
+add comment=Yusmaidi name=1402041008660002 password=311266 profile=\
+    1402041008660002
+add comment=Yusnedi name=1402040509680001 password=050968 profile=\
+    1402040509680001
+add comment="ZUL DICARA AL'ASRI" name=1402045004960002 password=100496 \
+    profile=1402045004960002
+add comment=Zulhadi name=1402040905940001 password=090594 profile=\
+    1402040905940001
+add comment="ANDRE SULISTIO" name=1402042609970001 password=260997 profile=\
+    1402042609970001
+add comment="ANGGA FAHRANDI" name=1402042006020002 password=200702 profile=\
+    1402042006020002
+add comment="Asep Kamaluddin" name=1402040610660001 password=061066 profile=\
+    1402040610660001
+add comment="DODI PUTRO WIBOWO" name=1402042606870001 password=260687 \
+    profile=1402042606870001
+add comment="Edi Sudaryono" name=1402041204720003 password=120472 profile=\
+    1402041204720003
+add comment="Ellen Susianty" name=1402045909680001 password=190968 profile=\
+    1402045909680001
+add comment="Erma Indrayati" name=1402096507900001 password=270790 profile=\
+    1402096507900001
+add comment=GUNAWAN name=1402021212710001 password=121271 profile=\
+    1402021212710001
+add comment=Indriyani name=1402044212660001 password=021266 profile=\
+    1402044212660001
+add comment="Irwansyah Putra" name=1402041410860002 password=141086 profile=\
+    1402041410860002
+add comment=JUFRINALDI name=1402022510960002 password=251096 profile=\
+    1402022510960002
+add comment=Jujun name=1402041807790001 password=180779 profile=\
+    1402041807790001
+add comment=Kusmiyati name=1402046208750001 password=220875 profile=\
+    1402046208750001
+add comment=Kusrin name=1402041908710001 password=180871 profile=\
+    1402041908710001
+add comment=Masnur name=1402040708690002 password=070869 profile=\
+    1402040708690002
+add comment="Mona Yuharicy" name=1402046408920001 password=240890 profile=\
+    1402046408920001
+add comment=Muryani name=1402045207650001 password=120765 profile=\
+    1402045207650001
+add comment=Nawardi name=1402041207670003 password=120767 profile=\
+    1402041207670003
+add comment="Octania Farradila" name=1402045510000001 password=151000 \
+    profile=1402045510000001
+add comment="Reza Andrian" name=1402041203890005 password=120389 profile=\
+    1402041203890005
+add comment="RISKY SYAHRIANI" name=1402047007980004 password=300798 profile=\
+    1402047007980004
+add comment="Rudi Hendrianto" name=1402041202830002 password=120282 profile=\
+    1402041202830002
+add comment="Saldi Helmisa" name=1402042510940002 password=251094 profile=\
+    1402042510940002
+add comment=Sanusi name=1402041701650001 password=170165 profile=\
+    1402041701650001
+add comment="Sri Jumiati" name=1402046510880004 password=251088 profile=\
+    1402046510880004
+add comment=Sukari name=1402040505650003 password=050565 profile=\
+    1402040505650003
+add comment=Sukat name=1402042107670002 password=210767 profile=\
+    1402042107670002
+add comment=Suriasdi name=1402040909670001 password=090967 profile=\
+    1402040909670001
+add comment=SYAHRIN name=1402042610880001 password=261088 profile=\
+    1402042610880001
+add comment=YATIMIN name=1402041308770001 password=130877 profile=\
+    1402041308770001
+add comment="Yoga Saputra" name=1402040505950009 password=050595 profile=\
+    1402040505950009
+add comment=Zurkaidah name=1402045506690002 password=150669 profile=\
+    1402045506690002
+
+/ip hotspot walled-garden
+add dst-host=.whatsapp.com
+add dst-host=.whatsapp.net
+
+/ip route
+add distance=1 gateway=60.1.1.1
+
+/system clock
+set time-zone-name=Asia/Jakarta
+
+/system identity
+set name="Router Gateway"
+
+/system ntp client
+set enabled=yes primary-ntp=202.162.32.12 secondary-ntp=103.104.28.105
+
+/system scheduler
+add comment="Router OFF" disabled=yes interval=1d name="Router OFF" on-event=\
+    "/interface disable 8" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=feb/23/2022 start-time=18:00:00
+add comment="Router ON" disabled=yes interval=1d name="Router ON" on-event=\
+    "/interface enable 8" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=feb/23/2022 start-time=06:00:00
+add comment="Reboot Otomatis" interval=3d name=Reboot on-event=\
+    "/system reboot" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=feb/24/2022 start-time=21:00:00
+add interval=10s name=schedule1 on-event="/tool fetch url=https://tunnel.hostd\
+    dns.us/ddns/d25dedc04f8a30a10f14c4948fd0e709  mode=http" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive start-date=\
+    dec/21/2022 start-time=12:12:17
