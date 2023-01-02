@@ -1,0 +1,3 @@
+/ip firewall raw
+add action=drop chain=prerouting comment="Drop Koneksi ke modem" dst-address=<ip modem> dst-port=80 protocol=tcp
+add action=drop chain=prerouting comment="Drop Ping Ke Modem" dst-address=<ip modem> protocol=icmp
