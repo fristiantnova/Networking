@@ -1,0 +1,21 @@
+/system scheduler
+add name=BLOK-SUBUH  interval="1d 00:00:00" start-time="04:15:00" on-event="/interface disable ether3" comment=1.BLOK-SUBUH
+/system scheduler
+add name=BLOK-DZUHUR  interval="1d 00:00:00" start-time="11:45:00" on-event="/interface disable ether3" comment=2.BLOK-DZUHUR
+/system scheduler
+add name=BLOK-ASHAR  interval="1d 00:00:00" start-time="15:01:00" on-event="/interface disable ether3" comment=3.BLOK-ASHAR
+/system scheduler
+add name=BLOK-MAGRIB  interval="1d 00:00:00" start-time="17:54:00" on-event="/interface disable ether3" comment=4.BLOK-MAGRIB
+/system scheduler
+add name=BLOK-ISYA  interval="1d 00:00:00" start-time="19:05:00" on-event="/interface disable ether3" comment=5.BLOK-ISYA
+
+/system scheduler
+add name=AKTIF-SUBUH  interval="1d 00:00:00" start-time="04:25:00" on-event="/interface enable ether3" comment=1.AKTIF-SUBUH
+/system scheduler
+add name=AKTIF-DZUHUR  interval="1d 00:00:00" start-time="11:55:00" on-event="/interface enable ether3" comment=2.AKTIF-DZUHUR
+/system scheduler
+add name=AKTIF-ASHAR  interval="1d 00:00:00" start-time="15:15:00" on-event="/interface enable ether3" comment=3.AKTIF-ASHAR
+/system scheduler
+add name=AKTIF-MAGRIB  interval="1d 00:00:00" start-time="18:06:00" on-event="/interface enable ether3" comment=4.AKTIF-MAGRIB
+/system scheduler
+add name=AKTIF-ISYA  interval="1d 00:00:00" start-time="19:20:00" on-event="/interface enable ether3" comment=5.AKTIF-ISYA
